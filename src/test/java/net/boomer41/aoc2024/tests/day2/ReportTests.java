@@ -38,13 +38,9 @@ public class ReportTests {
 
     @Test
     public void testParseFailures() {
-        Assertions.assertThrowsExactly(InvalidInputException.class, () -> {
-            new Report("hans");
-        });
+        Assertions.assertThrowsExactly(InvalidInputException.class, () -> new Report("hans"));
 
-        Assertions.assertThrowsExactly(InvalidInputException.class, () -> {
-            new Report("1 2 3 4 5 dieter");
-        });
+        Assertions.assertThrowsExactly(InvalidInputException.class, () -> new Report("1 2 3 4 5 dieter"));
     }
 
 }

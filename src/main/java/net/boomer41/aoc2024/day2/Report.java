@@ -5,16 +5,16 @@ import java.util.*;
 
 public class Report {
 
-    private List<Integer> levels;
+    private final List<Integer> levels;
 
     public Report(String input) throws InvalidInputException {
         var levelStrings = input.split("\\s+");
 
         levels = new ArrayList<>();
 
-        for (int i = 0; i < levelStrings.length; i++) {
+        for (var levelString : levelStrings) {
             try {
-                levels.add(Integer.parseInt(levelStrings[i]));
+                levels.add(Integer.parseInt(levelString));
             } catch (NumberFormatException e) {
                 throw new InvalidInputException("Invalid number", e);
             }
