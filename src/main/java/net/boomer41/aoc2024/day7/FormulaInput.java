@@ -28,7 +28,7 @@ public class FormulaInput {
                 result = switch (operator) {
                     case 0 -> result + numbers[numberIndex];
                     case 1 -> result * numbers[numberIndex];
-                    case 2 -> Long.parseLong(result + Long.toString(numbers[numberIndex]));
+                    case 2 -> concatLongs(result, numbers[numberIndex]);
                     case 3 -> -1;
                     default -> throw new UnsupportedOperationException();
                 };
@@ -60,6 +60,18 @@ public class FormulaInput {
         }
 
         return false;
+    }
+
+    private static long concatLongs(long a, long b) {
+        // Shift a so many places to the left as there are digits in b
+        for (var b2 = b; b2 > 0;) {
+            a *= 10L;
+            b2 /= 10L;
+        }
+
+        // Add b to "OR" the two numbers together
+        a += b;
+        return a;
     }
 
 }
