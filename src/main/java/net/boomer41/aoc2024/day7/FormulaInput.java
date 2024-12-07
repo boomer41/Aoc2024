@@ -32,6 +32,20 @@ public class FormulaInput {
                     case 3 -> -1;
                     default -> throw new UnsupportedOperationException();
                 };
+
+                if (result >= 0) {
+                    continue;
+                }
+
+                // Optimization: Skip this operator step entirely
+                // if an unhandled operator is encountered
+                var toAdd = 1L << (factor * (numberIndex - 1));
+                i += toAdd;
+
+                // Account for loop above
+                i--;
+
+                break;
             }
 
             if (result < 0) {
