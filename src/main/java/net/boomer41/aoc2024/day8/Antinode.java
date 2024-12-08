@@ -8,6 +8,6 @@ public class Antinode {
 
     private final Vector2I position;
 
-    private final Character frequency;
+    private final char frequency;
 
 }
