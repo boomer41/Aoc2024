@@ -193,6 +193,8 @@ public class DiskMap {
 
             freeBlock.setLength(toMove);
             freeBlock.setFile(fileEntry.getFile());
+
+            freeBlock = newFreeBlock;
         } else {
             freeBlock.setFile(fileEntry.getFile());
         }
@@ -245,6 +247,11 @@ public class DiskMap {
 
         a.setLength(a.getLength() + b.getLength());
         b.setInvalid(true);
+
+        if (b == tail) {
+            tail = a;
+        }
+
         return a;
     }
 
