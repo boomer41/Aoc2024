@@ -7,7 +7,7 @@ import java.util.*;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class StoneMap {
 
-    private List<Long> stones;
+    private final List<Long> stones;
 
     public static StoneMap fromString(String input) {
         var stones = new LinkedList<Long>();
@@ -62,7 +62,7 @@ public class StoneMap {
             return blinkSingleStone(stone * 2024L, level + 1, iterationCount, cache);
         }
 
-        var new1Multiplicator = 1L;
+        var rightStoneMultiplicator = 1L;
         var rightStone = 0L;
         var leftStone = stone;
 
@@ -70,8 +70,8 @@ public class StoneMap {
             var toMove = leftStone % 10L;
             leftStone /= 10L;
 
-            rightStone = rightStone + toMove * new1Multiplicator;
-            new1Multiplicator *= 10L;
+            rightStone = rightStone + toMove * rightStoneMultiplicator;
+            rightStoneMultiplicator *= 10L;
         }
 
         return blinkSingleStone(leftStone, level + 1, iterationCount, cache)
