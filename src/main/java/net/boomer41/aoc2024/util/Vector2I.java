@@ -7,6 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Vector2I {
 
+    public static final Vector2I ZERO = new Vector2I(0, 0);
+
     private final int x;
 
     private final int y;
@@ -21,6 +23,10 @@ public class Vector2I {
 
     public Vector2I reverse() {
         return new Vector2I(-x, -y);
+    }
+
+    public Vector2I multiply(Integer count) {
+        return new Vector2I(x * count, y * count);
     }
 
 }
