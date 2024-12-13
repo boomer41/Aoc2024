@@ -4,14 +4,35 @@ import net.boomer41.aoc2024.util.StraightLine2L;
 import net.boomer41.aoc2024.util.Vector2L;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.MethodSource;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 public class StraightLineLTests {
 
+    public static List<Long> getTestOffsets() {
+        return Arrays.asList(
+                0L,
+                1_000L,
+                2_000L,
+                5_000L,
+                1_000_000L,
+                2_000_000L,
+                5_000_000L,
+                1_000_000_000L,
+                2_000_000_000L,
+                5_000_000_000L,
+                1_000_000_000_000L,
+                2_000_000_000_000L,
+                5_000_000_000_000L,
+                1_000_000_000_000_000L
+        );
+    }
+
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionInteger(long offset) {
         var l1 = new StraightLine2L(new Vector2L(4L + offset, 6L + offset), new Vector2L(1L, 2L));
         var l2 = new StraightLine2L(new Vector2L(offset, 6L + offset), new Vector2L(3L, -2L));
@@ -26,7 +47,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionNotExactlyInteger(long offset) {
         var l1 = new StraightLine2L(new Vector2L(4L + offset, 6L + offset), new Vector2L(1L, 2L));
         var l2 = new StraightLine2L(new Vector2L(1L + offset, 7L + offset), new Vector2L(3L, -2L));
@@ -41,7 +62,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionParallel(long offset) {
         var d = new Vector2L(4L, 6L);
         var l1 = new StraightLine2L(new Vector2L(4L + offset, 6L + offset), d);
@@ -57,7 +78,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionParallelSamePoint(long offset) {
         var d = new Vector2L(4L, 6L);
         var l1 = new StraightLine2L(new Vector2L(4L + offset, 6L + offset), d);
@@ -73,7 +94,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionParallelDownwards(long offset) {
         var d = new Vector2L(0, 6L);
         var l1 = new StraightLine2L(new Vector2L(4L + offset, 6L + offset), d);
@@ -89,7 +110,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionDownwards(long offset) {
         var l1 = new StraightLine2L(new Vector2L(1L + offset, 7L + offset), new Vector2L(3L, -2L));
         var l2 = new StraightLine2L(new Vector2L(4L + offset, 2L + offset), new Vector2L(0L, 1L));
@@ -104,7 +125,7 @@ public class StraightLineLTests {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {0, 1_000_000_000_000L})
+    @MethodSource("getTestOffsets")
     public void testIntersectionOrder(long offset) {
         var s1 = new Vector2L(1L + offset, 1L + offset);
         var s2 = new Vector2L(4L + offset, 6L + offset);
